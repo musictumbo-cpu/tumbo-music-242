@@ -8,6 +8,8 @@ import { songs, videos } from "@/data/site";
 
 export default function Home() {
   const featuredSong = songs[0];
+  const latestSingle = songs[1];
+  const upcomingSong = songs[2];
   const latestVideo = videos[0];
 
   return (
@@ -55,11 +57,27 @@ export default function Home() {
         <div className="section-shell">
           <SectionHeader
             eyebrow="Featured Release"
-            title="Songs with roots, pride, and real-life feeling."
-            description="Start with the latest featured single, then explore the full music page for streaming placeholders and song story sections."
+            title="Nassau Girls the Sweetest"
+            description="The main released song and video, available on Spotify and YouTube when the real links are added."
           />
           <div className="max-w-2xl">
             <MusicCard {...featuredSong} />
+          </div>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            <div className="panel rounded-lg p-5">
+              <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#54c3b2]">
+                Latest Single
+              </p>
+              <h3 className="mt-2 text-2xl font-black">{latestSingle.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#f2e4d0]/70">{latestSingle.status}</p>
+            </div>
+            <div className="panel rounded-lg p-5">
+              <p className="text-sm font-bold uppercase tracking-[0.22em] text-[#f4b95f]">
+                Coming Soon
+              </p>
+              <h3 className="mt-2 text-2xl font-black">{upcomingSong.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-[#f2e4d0]/70">{upcomingSong.status}</p>
+            </div>
           </div>
         </div>
       </section>
@@ -67,9 +85,9 @@ export default function Home() {
       <section className="border-y border-white/10 bg-black/20 py-16 sm:py-20">
         <div className="section-shell">
           <SectionHeader
-            eyebrow="Latest Video"
-            title="Visuals for the music."
-            description="A clean embed area ready for official videos, concepts, and behind-the-scenes clips."
+            eyebrow="Featured Video"
+            title="Nassau Girls the Sweetest"
+            description="Featured YouTube placeholder for the official music video. Replace the embed URL when the real video link is ready."
           />
           <VideoEmbed embedUrl={latestVideo.embedUrl} title={latestVideo.title} />
         </div>

@@ -1,5 +1,6 @@
 type MusicCardProps = {
   title: string;
+  status: string;
   description: string;
   story: string;
   links: {
@@ -10,17 +11,20 @@ type MusicCardProps = {
   };
 };
 
-export function MusicCard({ title, description, story, links }: MusicCardProps) {
+export function MusicCard({ title, status, description, story, links }: MusicCardProps) {
   return (
     <article className="panel overflow-hidden rounded-lg">
       {/* Replace this placeholder block with real cover art, preferably a square image in /public/images. */}
       <div className="cover-placeholder flex aspect-square min-h-64 items-end p-6">
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-black/70">Single</p>
+          <p className="text-sm font-bold uppercase tracking-[0.22em] text-black/70">{status}</p>
           <h3 className="mt-2 text-3xl font-black text-black">{title}</h3>
         </div>
       </div>
       <div className="p-6">
+        <p className="mb-3 inline-flex rounded-full border border-[#54c3b2]/35 bg-[#54c3b2]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[#54c3b2]">
+          {status}
+        </p>
         <p className="text-[#f2e4d0]/80">{description}</p>
         <div className="mt-5 flex flex-wrap gap-3">
           {/* Replace song links in data/site.ts with real Spotify, Apple Music, YouTube, and HyperFollow URLs. */}

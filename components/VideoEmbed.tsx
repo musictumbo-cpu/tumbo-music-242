@@ -1,9 +1,10 @@
 type VideoEmbedProps = {
   title: string;
   embedUrl: string;
+  note?: string;
 };
 
-export function VideoEmbed({ title, embedUrl }: VideoEmbedProps) {
+export function VideoEmbed({ title, embedUrl, note }: VideoEmbedProps) {
   const isPlaceholder = embedUrl.includes("YOUTUBE_EMBED_LINK_HERE");
 
   return (
@@ -30,6 +31,7 @@ export function VideoEmbed({ title, embedUrl }: VideoEmbedProps) {
       </div>
       <div className="p-5">
         <h3 className="text-xl font-black">{title}</h3>
+        {note ? <p className="mt-2 text-sm leading-6 text-[#f2e4d0]/68">{note}</p> : null}
       </div>
     </div>
   );

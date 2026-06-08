@@ -3,14 +3,14 @@ import { VideoEmbed } from "@/components/VideoEmbed";
 import { videos } from "@/data/site";
 
 export default function VideosPage() {
-  const groups = ["Official Music Videos", "AI Music Video Concepts", "Behind-the-Scenes Clips"];
+  const groups = ["Official Music Videos", "Coming Soon", "Behind-the-Scenes Clips"];
 
   return (
     <section className="section-shell py-16 sm:py-20">
       <SectionHeader
         eyebrow="Videos"
-        title="Official visuals, concepts, and behind the scenes."
-        description="Use these sections to organize YouTube embeds without cluttering the page."
+        title="Featured videos and upcoming visuals."
+        description="Nassau Girls the Sweetest is featured as the current YouTube video placeholder. Poor and Proud is marked as a music video coming soon."
       />
       <div className="grid gap-10">
         {groups.map((group) => (
@@ -20,7 +20,12 @@ export default function VideosPage() {
               {videos
                 .filter((video) => video.label === group)
                 .map((video) => (
-                  <VideoEmbed embedUrl={video.embedUrl} key={video.title} title={video.title} />
+                  <VideoEmbed
+                    embedUrl={video.embedUrl}
+                    key={video.title}
+                    note={video.note}
+                    title={video.title}
+                  />
                 ))}
             </div>
           </div>
