@@ -1,51 +1,56 @@
-type MusicCardProps = {
-  title: string;
-  status: string;
-  description: string;
-  story: string;
-  links: {
-    spotify: string;
-    appleMusic: string;
-    youtube: string;
-    hyperfollow: string;
-  };
-};
+import { Song } from '@/data/site'
+import Image from 'next/image'
 
-export function MusicCard({ title, status, description, story, links }: MusicCardProps) {
+interface Props { song: Song }
+
+export default function MusicCard({ song }: Props) {
+  const isReleased = song.status === 'released'
+
   return (
-    <article className="panel overflow-hidden rounded-lg">
-      {/* Replace this placeholder block with real cover art, preferably a square image in /public/images. */}
-      <div className="cover-placeholder flex aspect-square min-h-64 items-end p-6">
-        <div>
-          <p className="text-sm font-bold uppercase tracking-[0.22em] text-black/70">{status}</p>
-          <h3 className="mt-2 text-3xl font-black text-black">{title}</h3>
+    <div className="bg-dark-card border border-dark-border rounded-sm overflow-hidden flex flex-col">
+      {/* Cover art */}
+      <div className="relative aspect-square bg-gradient-to-br from-ocean/60 via-dark to-gold/20">
+        <Image
+          src={song.coverArt}
+          alt={song.title}
+          fill
+          className="object-cover"
+          onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
+        />
+        {/* Status badge */}
+        <div className={`absolute top-3 right-3 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider z-10 ${
+          isReleased ? 'bg-gold text-black' : 'bg-gray-700 text-gray-300'
+        }`}>
+          {isReleased ? 'Out Now' : 'Coming Soon'}
         </div>
       </div>
-      <div className="p-6">
-        <p className="mb-3 inline-flex rounded-full border border-[#54c3b2]/35 bg-[#54c3b2]/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-[#54c3b2]">
-          {status}
-        </p>
-        <p className="text-[#f2e4d0]/80">{description}</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          {/* Replace song links in data/site.ts with real Spotify, Apple Music, YouTube, and HyperFollow URLs. */}
-          <a className="button-primary text-sm" href={links.spotify}>
-            Spotify
-          </a>
-          <a className="button-secondary text-sm" href={links.appleMusic}>
-            Apple Music
-          </a>
-          <a className="button-secondary text-sm" href={links.youtube}>
-            YouTube
-          </a>
-          <a className="button-secondary text-sm" href={links.hyperfollow}>
-            HyperFollow
-          </a>
-        </div>
-        <div className="mt-6 border-t border-white/10 pt-5">
-          <p className="text-sm font-bold uppercase tracking-[0.2em] text-[#54c3b2]">Lyrics / Story</p>
-          <p className="mt-3 text-sm leading-6 text-[#f2e4d0]/68">{story}</p>
-        </div>
+
+      {/* Info */}
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="font-display text-white text-lg font-bold mb-2">{song.title}</h3>
+        <p className="text-gray-400 text-sm leading-relaxed flex-1">{song.description}</p>
+
+        {isReleased ? (
+          <div className="mt-5 flex flex-wrap gap-2">
+            {song.spotify && (
+              <a href={song.spotify} target="_blank" rel="noopener noreferrer"
+                 className="btn-gold text-xs px-4 py-2">Spotify</a>
+            )}
+            {song.appleMusic && (
+              <a href={song.appleMusic} target="_blank" rel="noopener noreferrer"
+                 className="btn-outline text-xs px-4 py-2">Apple Music</a>
+            )}
+            {song.youtube && (
+              <a href={song.youtube} target="_blank" rel="noopener noreferrer"
+                 className="btn-outline text-xs px-4 py-2">YouTube</a>
+            )}
+          </div>
+        ) : (
+          <div className="mt-5">
+            <p className="text-gold/70 text-sm italic">Dropping soon — stay tuned.</p>
+          </div>
+        )}
       </div>
-    </article>
-  );
+    </div>
+  )
 }
