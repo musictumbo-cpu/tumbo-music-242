@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+:root {
+  --background: #090807;
+  --foreground: #fff8ef;
+  --gold: #f4b95f;
+  --coral: #e8674c;
+  --aqua: #54c3b2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(232, 103, 76, 0.18), transparent 30rem),
+    radial-gradient(circle at 82% 22%, rgba(84, 195, 178, 0.12), transparent 28rem),
+    linear-gradient(180deg, #0d0b09 0%, #090807 42%, #11100d 100%);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a,
+button,
+input,
+textarea {
+  outline-color: var(--gold);
+}
+
+.grain {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--gold), var(--coral));
+  color: #16100b;
+  font-weight: 800;
+  padding: 0.8rem 1.25rem;
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 248, 239, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff8ef;
+  font-weight: 700;
+  padding: 0.7rem 1rem;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.button-secondary:hover {
+  border-color: rgba(244, 185, 95, 0.7);
+  background: rgba(244, 185, 95, 0.1);
+}
+
+.section-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+.panel {
+  border: 1px solid rgba(255, 248, 239, 0.12);
+  background: rgba(255, 248, 239, 0.055);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.cover-placeholder {
+  background:
+    linear-gradient(135deg, rgba(244, 185, 95, 0.95), rgba(232, 103, 76, 0.88) 50%, rgba(84, 195, 178, 0.78)),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.18) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.18) 75%);
+  background-size: cover, 22px 22px;
+}
