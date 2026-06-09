@@ -1,9 +1,9 @@
 import MusicCard from '@/components/MusicCard'
-import { songs } from '@/data/site'
+import { songs, Song } from '@/data/site'
 
 export default function MusicPage() {
-  const released = songs.filter(s => s.status === 'released')
-  const comingSoon = songs.filter(s => s.status === 'coming-soon')
+  const released = songs.filter((s: Song) => s.status === 'released')
+  const comingSoon = songs.filter((s: Song) => s.status === 'coming-soon')
   return (
     <div className="pt-24 pb-16 max-w-6xl mx-auto px-4">
       <div className="text-center mb-10">
@@ -14,7 +14,7 @@ export default function MusicPage() {
       <div className="mb-16">
         <h3 className="text-xs uppercase tracking-widest text-gold font-semibold mb-6 border-b border-gray-800 pb-3">Out Now</h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {released.map(song => (
+          {released.map((song: Song) => (
             <MusicCard key={song.id} song={song} />
           ))}
         </div>
@@ -23,7 +23,7 @@ export default function MusicPage() {
         <div>
           <h3 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-6 border-b border-gray-800 pb-3">Coming Soon</h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {comingSoon.map(song => (
+            {comingSoon.map((song: Song) => (
               <MusicCard key={song.id} song={song} />
             ))}
           </div>
