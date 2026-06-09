@@ -1,18 +1,20 @@
-import { songs } from '@/data/site'
-import MusicCard from '@/components/MusicCard'
-import SectionHeader from '@/components/SectionHeader'
+import { MusicCard } from "@/components/MusicCard";
+import { SectionHeader } from "@/components/SectionHeader";
+import { songs } from "@/data/site";
+
 export default function MusicPage() {
-  const released = songs.filter(s => s.status === 'released')
-  const soon = songs.filter(s => s.status === 'coming-soon')
   return (
-    <div className='pt-24 pb-16 max-w-6xl mx-auto px-4'>
-      <SectionHeader eyebrow='Discography' title='All Music' subtitle='Stream everywhere.' centered />
-      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16'>
-        {released.map(song => (<MusicCard key={song.id} song={song} />))}
+    <section className="section-shell py-16 sm:py-20">
+      <SectionHeader
+        eyebrow="Music"
+        title="Featured songs"
+        description="Stream links are placeholders until the real release links are ready. Replace them in data/site.ts."
+      />
+      <div className="grid gap-6 lg:grid-cols-2">
+        {songs.map((song) => (
+          <MusicCard key={song.title} {...song} />
+        ))}
       </div>
-      <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-6'>
-        {soon.map(song => (<MusicCard key={song.id} song={song} />))}
-      </div>
-    </div>
-  )
+    </section>
+  );
 }
