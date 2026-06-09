@@ -1,4 +1,4 @@
-import { MusicCard } from "@/components/MusicCard";
+import MusicCard from "@/components/MusicCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { songs } from "@/data/site";
 
