@@ -1,5 +1,5 @@
 import MusicCard from '@/components/MusicCard'
-import { songs, Song } from '@/data/site'
+import { songs } from '@/data/site'
 
 export default function MusicPage() {
   const released = songs.filter((s) => s.status === 'released')
