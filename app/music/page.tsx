@@ -1,52 +1,34 @@
-export const siteConfig = {
-  artist: "Tumbo Music 242",
-  tagline: "Music from Nassau. Stories from real life.",
-  location: "Nassau, Bahamas",
-  email: "musictumbo@gmail.com",
-  socials: {
-    spotify: "SPOTIFY_ARTIST_LINK_HERE",
-    youtube: "YOUTUBE_CHANNEL_LINK_HERE",
-    instagram: "INSTAGRAM_LINK_HERE",
-    facebook: "https://www.facebook.com/TumboMusic242",
-    appleMusic: "APPLE_MUSIC_LINK_HERE",
-  },
-}
+import MusicCard from '@/components/MusicCard'
+import { songs } from '@/data/site'
 
-export const songs = [
-  {
-    id: "nassau-girls",
-    title: "Nassau Girls the Sweetest",
-    description: "A love letter to Bahamian women — celebrating their beauty, strength, and island spirit. Tumbo's breakout anthem, straight from Nassau.",
-    status: "released",
-    spotify: "SPOTIFY_NASSAU_GIRLS_LINK_HERE",
-    appleMusic: "APPLE_MUSIC_NASSAU_GIRLS_LINK_HERE",
-    youtube: "YOUTUBE_NASSAU_GIRLS_SONG_LINK_HERE",
-    youtubeVideo: "NASSAU_GIRLS_YOUTUBE_VIDEO_ID_HERE",
-    coverArt: "/images/nassau-girls-cover.jpg",
-    lyricsNote: "Nassau Girls the Sweetest — available on Spotify and YouTube.",
-  },
-  {
-    id: "she-bumped-into-me",
-    title: "She Bumped Into Me",
-    description: "A smooth R&B story about an unexpected encounter that changes everything. Warm Nassau vibes with real emotion.",
-    status: "released",
-    spotify: "SPOTIFY_SHE_BUMPED_LINK_HERE",
-    appleMusic: "APPLE_MUSIC_SHE_BUMPED_LINK_HERE",
-    youtube: "YOUTUBE_SHE_BUMPED_SONG_LINK_HERE",
-    youtubeVideo: "",
-    coverArt: "/images/she-bumped-cover.jpg",
-    lyricsNote: "She Bumped Into Me — out now on all platforms.",
-  },
-  {
-    id: "poor-and-proud",
-    title: "Poor and Proud",
-    description: "Coming soon. A bold anthem for anyone who built something from nothing — Nassau-raised, real-life inspired.",
-    status: "coming-soon",
-    spotify: "",
-    appleMusic: "",
-    youtube: "",
-    youtubeVideo: "",
-    coverArt: "/images/poor-and-proud-cover.jpg",
-    lyricsNote: "Poor and Proud — dropping soon. Music video in production.",
-  },
-]
+export default function MusicPage() {
+  const released = songs.filter(s => s.status === 'released')
+  const comingSoon = songs.filter(s => s.status === 'coming-soon')
+  return (
+    <div className="pt-24 pb-16 max-w-6xl mx-auto px-4">
+      <div className="text-center mb-10">
+        <p className="text-gold text-xs uppercase tracking-widest mb-2">Discography</p>
+        <h1 className="font-display text-4xl font-bold text-white">All Music</h1>
+        <p className="text-gray-400 mt-2">Independent releases from Nassau, Bahamas. Stream everywhere.</p>
+      </div>
+      <div className="mb-16">
+        <h3 className="text-xs uppercase tracking-widest text-gold font-semibold mb-6 border-b border-gray-800 pb-3">Out Now</h3>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {released.map(song => (
+            <MusicCard key={song.id} song={song} />
+          ))}
+        </div>
+      </div>
+      {comingSoon.length > 0 && (
+        <div>
+          <h3 className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-6 border-b border-gray-800 pb-3">Coming Soon</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {comingSoon.map(song => (
+              <MusicCard key={song.id} song={song} />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  )
+}
